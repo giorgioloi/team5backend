@@ -1,0 +1,32 @@
+{
+  "name": "team5backend",
+  "version": "1.0.0",
+  "description": "backend del progetto del Team 5",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giorgioloi/team5backend.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongodb"
+  ],
+  "author": "Giorgio Loi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/giorgioloi/team5backend/issues"
+  },
+  "homepage": "https://github.com/giorgioloi/team5backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.9"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.5"
+  }
+}
