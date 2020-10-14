@@ -7,6 +7,10 @@ var ArticleSchema = new Schema({
     type: String,
     required: 'Kindly enter the article title'
   },
+  subtitle: {
+    type: String,
+    required: 'Kindly enter the article subtitle'
+  },
   body: {
     type: String,
     required: 'Kindly enter the article body'
@@ -19,10 +23,17 @@ var ArticleSchema = new Schema({
     type: Boolean,
     default: false
   },
-
   featured: {
     type: Boolean,
     default: false
+  },
+  author: {
+    type: String,
+    required: 'Kindly enter the article author'
+  },
+  imgurl: {
+    type: String,
+    required: 'Kindly enter the img url'
   },
   tag: {
     type: [{
@@ -32,4 +43,20 @@ var ArticleSchema = new Schema({
   }
 });
 
+
+var CommentSchema = new Schema({
+  _id:{ 
+    type: Schema.Types.ObjectId, ref: 'Articles'
+  },
+  nickname: {
+    type: String,
+    required: 'Kindly enter the author nickname'
+  },
+  body: {
+    type: String,
+    required: 'Kindly enter the comment'
+  }
+});
+
 module.exports = mongoose.model('Articles', ArticleSchema);
+module.exports = mongoose.model('Comments', CommentSchema);

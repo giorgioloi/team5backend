@@ -7,7 +7,7 @@ var express = require('express'),
 
   // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/blogDb'); 
+mongoose.connect('mongodb://localhost/team5Db'); 
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -35,4 +35,4 @@ app.use(function(req, res) {
   });
 
 
-console.log('blogBacked server started on: ' + port);
+console.log('team5Backed server started on: ' + port);

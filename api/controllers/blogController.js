@@ -1,6 +1,7 @@
 'use strict';
 var mongoose = require('mongoose'),
-  Article = mongoose.model('Articles');
+  Article = mongoose.model('Articles'),
+  Comment = mongoose.model('Comments');
 
 exports.list_all_articles = function(req, res) {
   Article.find({}, function(err, article) {
@@ -60,4 +61,49 @@ exports.read_an_article = function(req, res) {
     });
   };
 
+//Comments methods
+exports.list_all_comments = function(req, res) {
+  Comment.find({}, function(err, comment) {
+    if (err)
+      res.send(err);
+    res.json(comment);
+  });
+};
 
+exports.read_comment = function(req, res) {
+  Comment.findById(req.params.articleId, function(err, comment) {
+    if (err)
+      res.send(err);
+    res.json(comment);
+  });
+};
+
+exports.create_comment = function(req, res) {
+  var new_comment = new Comment(req.body);
+  new_comment.save(function(err, comment) {
+    if (err)
+      res.send(err);
+    res.json(comment);
+  });
+};
+
+exports.patch_comment = function(req, res) {
+  let query = req.body;
+  Article.findOneAndUpdate({_id: req.params.articleId},
+    { $set: query }, {new: true},
+                        function(err, comment) {
+    if (err)
+      res.send(err);
+    res.json(comment);
+  });
+};
+
+exports.delete_comment = function(req, res) {
+  Article.remove({
+    _id: req.params.articleId
+  }, function(err, comment) {
+    if (err)
+      res.send(err);
+    res.json({ message: 'Comment successfully deleted' });
+  });
+};
