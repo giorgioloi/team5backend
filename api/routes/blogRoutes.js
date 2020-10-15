@@ -11,8 +11,7 @@ module.exports = function(app) {
     .get(blog.list_all_comments)
     .post(blog.create_comment);
     
-
-  app.route('/articles/comments/articleId')
+  app.route('/articles/comments/:commentId')
     .get(blog.read_comment)
     .patch(blog.patch_comment)
     .delete(blog.delete_comment);

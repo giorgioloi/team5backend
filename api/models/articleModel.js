@@ -1,8 +1,8 @@
 'use strict';
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var ArticleSchema = new Schema({
+const ArticleSchema = new Schema({
   title: {
     type: String,
     required: 'Kindly enter the article title'
@@ -40,23 +40,12 @@ var ArticleSchema = new Schema({
       type: [String],
       default: ['attualità']
     }],
-  }
+  },
+  comments: {
+    type: Schema.Types.ObjectId,
+      ref: 'Comments',
+    }
 });
 
-
-var CommentSchema = new Schema({
-  _id:{ 
-    type: Schema.Types.ObjectId, ref: 'Articles'
-  },
-  nickname: {
-    type: String,
-    required: 'Kindly enter the author nickname'
-  },
-  body: {
-    type: String,
-    required: 'Kindly enter the comment'
-  }
-});
 
 module.exports = mongoose.model('Articles', ArticleSchema);
-module.exports = mongoose.model('Comments', CommentSchema);

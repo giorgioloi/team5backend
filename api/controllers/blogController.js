@@ -8,7 +8,7 @@ exports.list_all_articles = function(req, res) {
     if (err)
       res.send(err);
     res.json(article);
-  });
+  }).populate('comments').exec();
 };
 
 exports.read_an_article = function(req, res) {
@@ -43,7 +43,7 @@ exports.read_an_article = function(req, res) {
   exports.patch_an_article = function(req, res) {
     let query = req.body;
     Article.findOneAndUpdate({_id: req.params.articleId},
-      { $set: query }, {new: true},
+      { $push: query }, {new: true},
                           function(err, article) {
       if (err)
         res.send(err);
@@ -71,7 +71,7 @@ exports.list_all_comments = function(req, res) {
 };
 
 exports.read_comment = function(req, res) {
-  Comment.findById(req.params.articleId, function(err, comment) {
+  Comment.findById(req.params.commentId, function(err, comment) {
     if (err)
       res.send(err);
     res.json(comment);
@@ -89,7 +89,7 @@ exports.create_comment = function(req, res) {
 
 exports.patch_comment = function(req, res) {
   let query = req.body;
-  Article.findOneAndUpdate({_id: req.params.articleId},
+  Comment.findOneAndUpdate({_id: req.params.commentId},
     { $set: query }, {new: true},
                         function(err, comment) {
     if (err)
@@ -99,8 +99,8 @@ exports.patch_comment = function(req, res) {
 };
 
 exports.delete_comment = function(req, res) {
-  Article.remove({
-    _id: req.params.articleId
+  Comment.remove({
+    _id: req.params.commentId
   }, function(err, comment) {
     if (err)
       res.send(err);
