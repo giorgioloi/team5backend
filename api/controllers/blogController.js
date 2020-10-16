@@ -1,14 +1,13 @@
 'use strict';
 var mongoose = require('mongoose'),
-  Article = mongoose.model('Articles'),
-  Comment = mongoose.model('Comments');
+  Article = mongoose.model('Articles')
 
 exports.list_all_articles = function(req, res) {
   Article.find({}, function(err, article) {
     if (err)
       res.send(err);
     res.json(article);
-  }).populate('comments').exec();
+  })
 };
 
 exports.read_an_article = function(req, res) {
@@ -43,7 +42,7 @@ exports.read_an_article = function(req, res) {
   exports.patch_an_article = function(req, res) {
     let query = req.body;
     Article.findOneAndUpdate({_id: req.params.articleId},
-      { $push: query }, {new: true},
+      { $set: query }, {new: true},
                           function(err, article) {
       if (err)
         res.send(err);
@@ -61,49 +60,29 @@ exports.read_an_article = function(req, res) {
     });
   };
 
-//Comments methods
-exports.list_all_comments = function(req, res) {
-  Comment.find({}, function(err, comment) {
-    if (err)
-      res.send(err);
-    res.json(comment);
-  });
-};
 
-exports.read_comment = function(req, res) {
-  Comment.findById(req.params.commentId, function(err, comment) {
-    if (err)
-      res.send(err);
-    res.json(comment);
-  });
-};
+  //creazione commento dato articleId
 
-exports.create_comment = function(req, res) {
-  var new_comment = new Comment(req.body);
-  new_comment.save(function(err, comment) {
-    if (err)
-      res.send(err);
-    res.json(comment);
-  });
-};
+  exports.create_comment = function(req, res) {
+    let query = req.body;
+    Article.findOneAndUpdate({_id: req.params.articleId},
+      { $push: {comments: query}}, {new: true},
+                          function(err, article) {
+      if (err)
+        res.send(err);
+      res.json(article);
+    });
+  };
 
-exports.patch_comment = function(req, res) {
-  let query = req.body;
-  Comment.findOneAndUpdate({_id: req.params.commentId},
-    { $set: query }, {new: true},
-                        function(err, comment) {
-    if (err)
-      res.send(err);
-    res.json(comment);
-  });
-};
 
-exports.delete_comment = function(req, res) {
-  Comment.remove({
-    _id: req.params.commentId
-  }, function(err, comment) {
-    if (err)
-      res.send(err);
-    res.json({ message: 'Comment successfully deleted' });
-  });
-};
+//leggere tutti i commenti di un dato articolo
+
+  exports.list_all_comments = function(req, res) {
+    Article.findById(req.params.articleId, function(err, article) {
+      if (err)
+        res.send(err);
+      res.json(article.comments);
+    });
+  };
+
+  

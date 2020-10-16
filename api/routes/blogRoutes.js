@@ -7,19 +7,22 @@ module.exports = function(app) {
     .get(blog.list_all_articles)
     .post(blog.create_an_article);
 
-  app.route('/articles/comments/')
-    .get(blog.list_all_comments)
-    .post(blog.create_comment);
-    
-  app.route('/articles/comments/:commentId')
-    .get(blog.read_comment)
-    .patch(blog.patch_comment)
-    .delete(blog.delete_comment);
 
   app.route('/articles/:articleId')
     .get(blog.read_an_article)
     .put(blog.update_an_article)
     .patch(blog.patch_an_article)
+    //patch aggiunta commento
     .delete(blog.delete_an_article);
 
+  // app.route('/comments')
+  //   .get(blog.list_all_comment);
+
+  app.route('/comments/:articleId')
+    .get(blog.list_all_comments)
+    .patch(blog.create_comment);
+
+  // app.route('/comments/:commentId')
+  //   .get(blog.read_comment);
+  //   //.post(blog.create_an_article);
 };

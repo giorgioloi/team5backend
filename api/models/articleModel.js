@@ -41,11 +41,8 @@ const ArticleSchema = new Schema({
       default: ['attualità']
     }],
   },
-  comments: {
-    type: Schema.Types.ObjectId,
-      ref: 'Comments',
-    }
-});
+  comments: [{ body: String, nickname: String }],
 
+});
 
 module.exports = mongoose.model('Articles', ArticleSchema);
