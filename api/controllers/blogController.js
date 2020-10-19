@@ -85,4 +85,11 @@ exports.read_an_article = function(req, res) {
     });
   };
 
-  
+  //trovare un commento dato un commentId route('/:commentId')
+  exports.read_comment = function(req, res) {
+    Article.findOne({"comments._id" : req.params.commentId},{"comments.$":1} , function(err, article) {
+      if (err)
+        res.send(err);
+      res.json(article.comments);
+    });
+  };
