@@ -85,9 +85,9 @@ exports.list_all_comments = function (req, res) {
 
 //trovare un commento dato un commentId route('/:commentId')
 exports.read_comment = function (req, res) {
-  Article.findOne({ "comments._id": req.params.commentId }, { "comments.$": 1 }, function (err, article) {
+  Article.findOne({ "comments._id": req.params.commentId }, { "comments.$": 1 }, function (err, comment) {
     if (err)
       res.send(err);
-    res.json(article.comments);
+    res.json(comment);
   });
 };

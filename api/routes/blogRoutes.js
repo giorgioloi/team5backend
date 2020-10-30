@@ -1,6 +1,6 @@
 'use strict';
-module.exports = function(app) {
-    var blog = require('../controllers/blogController');
+module.exports = function (app) {
+  var blog = require('../controllers/blogController');
 
   // blog Routes
   app.route('/articles')
@@ -21,5 +21,5 @@ module.exports = function(app) {
   app.route('/:commentId')
     .get(blog.read_comment);
 
-    
+
 };
