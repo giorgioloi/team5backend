@@ -35,4 +35,4 @@ app.use(function (req, res) {
 });
 
 
-console.log('team5Backed server started on: ' + port);
+console.log('team5Backend server started on: ' + port);
