@@ -88,6 +88,7 @@ exports.read_comment = function (req, res) {
   Article.findOne({ "comments._id": req.params.commentId }, { "comments.$": 1 }, function (err, comment) {
     if (err)
       res.send(err);
-    res.json(comment);
+    else
+      res.json(comment);
   });
 };
