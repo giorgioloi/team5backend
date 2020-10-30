@@ -7,7 +7,7 @@ var express = require('express'),
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://Gio:pasta13@cluster0.35e0i.mongodb.net/team5db?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://Gio:pasta13@cluster0.35e0i.mongodb.net/team5db?retryWrites=true&w=majority', { useUnifiedTopology: true, useNewUrlParser: true });
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
