@@ -6,7 +6,8 @@ exports.list_all_articles = function (req, res) {
   Article.find({}, function (err, article) {
     if (err)
       res.send(err);
-    res.json(article);
+    else
+      res.json(article);
   })
 };
 
@@ -14,7 +15,8 @@ exports.read_an_article = function (req, res) {
   Article.findById(req.params.articleId, function (err, article) {
     if (err)
       res.send(err);
-    res.json(article);
+    else
+      res.json(article);
   });
 };
 
@@ -23,7 +25,8 @@ exports.create_an_article = function (req, res) {
   new_article.save(function (err, article) {
     if (err)
       res.send(err);
-    res.json(article);
+    else
+      res.json(article);
   });
 };
 
@@ -34,7 +37,8 @@ exports.update_an_article = function (req, res) {
     function (err, article) {
       if (err)
         res.send(err);
-      res.json(article);
+      else
+        res.json(article);
     });
 };
 
@@ -46,7 +50,8 @@ exports.patch_an_article = function (req, res) {
     function (err, article) {
       if (err)
         res.send(err);
-      res.json(article);
+      else
+        res.json(article);
     });
 };
 
@@ -56,7 +61,8 @@ exports.delete_an_article = function (req, res) {
   }, function (err, article) {
     if (err)
       res.send(err);
-    res.json({ message: 'Article successfully deleted' });
+    else
+      res.json({ message: 'Article successfully deleted' });
   });
 };
 
@@ -69,7 +75,8 @@ exports.create_comment = function (req, res) {
     function (err, article) {
       if (err)
         res.send(err);
-      res.json(article);
+      else
+        res.json(article);
     });
 };
 
@@ -79,7 +86,8 @@ exports.list_all_comments = function (req, res) {
   Article.findById(req.params.articleId, function (err, article) {
     if (err)
       res.send(err);
-    res.json(article.comments);
+    else
+      res.json(article.comments);
   });
 };
 
