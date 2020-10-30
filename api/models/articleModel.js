@@ -41,12 +41,12 @@ const ArticleSchema = new Schema({
       default: ['attualità']
     }],
   },
-  comments: [{ 
-    body: String, 
-    nickname: String, 
-    visibility:{ 
-      type:Boolean, 
-      default: true 
+  comments: [{
+    body: String,
+    nickname: String,
+    visibility: {
+      type: Boolean,
+      default: true
     }
   }],
 
